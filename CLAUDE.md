@@ -183,3 +183,34 @@ Only pull the tokio features you need (avoid `"full"`):
 ```toml
 tokio = { version = "1", features = ["time"] }
 ```
+
+## Publishing
+
+### GitHub
+
+- **Repo**: https://github.com/bgub/cosmic-ext-applet-pomodoro
+- Releases use `just tag <version>` then `git push origin main --tags`
+- Note: `just tag` fails if the version is already current — in that case just `git tag -a <version> -m 'release: <version>'` and push manually
+
+### NixOS (nixpkgs)
+
+- **PR**: https://github.com/NixOS/nixpkgs/pull/495307
+- COSMIC is a builtin in nixpkgs (`services.desktopManager.cosmic.enable = true`), NOT using the nixos-cosmic flake
+- Package lives at `pkgs/by-name/co/cosmic-ext-applet-pomodoro/package.nix` in nixpkgs
+- A local copy is at `package.nix` in this repo for reference
+- Uses `rustPlatform.buildRustPackage` + `libcosmicAppHook` + `just` (same pattern as other `cosmic-ext-applet-*` packages)
+- Key nix build details: `dontUseJustBuild = true`, `dontUseJustCheck = true` — cargo builds, just only installs
+- `justFlags` must override `prefix` and `bin-src` (with cross-compilation-aware target triple)
+- Maintainer entry for `bgub` added to `maintainers/maintainer-list.nix`
+- When updating: bump version/hashes in nixpkgs, use `nix-update` or manually update `tag`, `hash`, and `cargoHash`
+
+### Flatpak (cosmic-flatpak)
+
+- **PR**: https://github.com/pop-os/cosmic-flatpak/pull/116
+- Flathub rejects panel applets ("desktop environment extensions") — COSMIC applets go through `pop-os/cosmic-flatpak` instead
+- Manifest at `app/com.github.bgub.CosmicExtAppletPomodoro/com.github.bgub.CosmicExtAppletPomodoro.json`
+- Uses `com.system76.Cosmic.BaseApp` (provides `just`, COSMIC icons) on `org.freedesktop.Platform` 24.08
+- Rust toolchain via `org.freedesktop.Sdk.Extension.rust-stable`
+- `cargo-sources.json` generated with `flatpak-cargo-generator.py` from Cargo.lock (8800+ lines, vendoring all deps for offline build)
+- Build uses `just build-release --verbose --offline` then `just prefix=/app install`
+- When updating: regenerate `cargo-sources.json` from new Cargo.lock, update tag in manifest
