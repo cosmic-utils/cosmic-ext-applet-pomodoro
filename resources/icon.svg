@@ -1,7 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <ellipse cx="64" cy="76" rx="48" ry="44" fill="#e74c3c"/>
-  <ellipse cx="64" cy="64" rx="44" ry="40" fill="#c0392b" opacity="0.3"/>
-  <rect x="60" y="24" width="8" height="14" rx="3" fill="#27ae60"/>
-  <ellipse cx="50" cy="30" rx="14" ry="5" fill="#2ecc71" transform="rotate(-25 50 30)"/>
-  <ellipse cx="78" cy="30" rx="14" ry="5" fill="#2ecc71" transform="rotate(25 78 30)"/>
+  <ellipse cx="64" cy="108" rx="29" ry="8" fill="#000" opacity=".10"/>
+  <path d="M64 35c-8-10-22-15-35-12-18 4-30 19-30 37 0 28 26 50 65 50s65-22 65-50c0-18-12-33-30-37-13-3-27 2-35 12Z"
+        fill="#e14b39" stroke="#b93529" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 50c-18 0-32 11-32 26 0 2 0 4 1 6-10-7-16-18-16-30 0-16 11-29 27-33 7-2 15-1 20 3 5-4 13-5 20-3 16 4 27 17 27 33 0 12-6 23-16 30 1-2 1-4 1-6 0-15-14-26-32-26Z"
+        fill="#ff8468" opacity=".28"/>
+  <path d="M64 37V19" stroke="#236b3e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M64 36c-10-12-25-15-36-7 8 1 15 6 19 13Z"
+        fill="#2f9a53" stroke="#236b3e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 36c10-12 25-15 36-7-8 1-15 6-19 13Z"
+        fill="#2f9a53" stroke="#236b3e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 38c0-10-8-18-18-19 6 6 8 12 7 19Z"
+        fill="#27924b" stroke="#236b3e" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M64 38c0-10 8-18 18-19-6 6-8 12-7 19Z"
+        fill="#27924b" stroke="#236b3e" stroke-width="4" stroke-linejoin="round"/>
+  <ellipse cx="44" cy="55" rx="14" ry="9" fill="#fff" opacity=".22" transform="rotate(-20 44 55)"/>
 </svg>
