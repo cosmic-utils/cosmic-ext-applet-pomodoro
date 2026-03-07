@@ -2,6 +2,8 @@
 
 A pomodoro timer applet for the COSMIC™ desktop. Sits in the panel and provides work/break interval tracking with configurable durations.
 
+> This project is created and maintained by Ben Gubler ([@bgub](https://github.com/bgub)). It is not affiliated with or endorsed by System76.
+
 ![Screenshot](screenshot.png)
 
 ## Installation
