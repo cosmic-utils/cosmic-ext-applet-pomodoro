@@ -9,7 +9,7 @@ base-dir := absolute_path(clean(rootdir / prefix))
 cargo-target-dir := env('CARGO_TARGET_DIR', 'target')
 bin-src := cargo-target-dir / 'release' / name
 
-appdata-dst := base-dir / 'share' / 'appdata' / appid + '.metainfo.xml'
+metainfo-dst := base-dir / 'share' / 'metainfo' / appid + '.metainfo.xml'
 bin-dst := base-dir / 'bin' / name
 desktop-dst := base-dir / 'share' / 'applications' / appid + '.desktop'
 icon-dst := base-dir / 'share' / 'icons' / 'hicolor' / 'scalable' / 'apps' / appid + '.svg'
@@ -18,7 +18,7 @@ icon-dst := base-dir / 'share' / 'icons' / 'hicolor' / 'scalable' / 'apps' / app
 user-base := env('HOME') / '.local'
 user-bin-dst := user-base / 'bin' / name
 user-desktop-dst := user-base / 'share' / 'applications' / appid + '.desktop'
-user-appdata-dst := user-base / 'share' / 'appdata' / appid + '.metainfo.xml'
+user-metainfo-dst := user-base / 'share' / 'metainfo' / appid + '.metainfo.xml'
 user-icon-dst := user-base / 'share' / 'icons' / 'hicolor' / 'scalable' / 'apps' / appid + '.svg'
 
 # Default recipe which runs `just build-release`
@@ -60,14 +60,14 @@ run *args:
 install: build-release
     install -Dm0755 {{bin-src}} {{bin-dst}}
     install -Dm0644 resources/app.desktop {{desktop-dst}}
-    install -Dm0644 resources/app.metainfo.xml {{appdata-dst}}
+    install -Dm0644 resources/app.metainfo.xml {{metainfo-dst}}
     install -Dm0644 resources/icon.svg {{icon-dst}}
 
 # Installs to ~/.local (no root needed, works on NixOS)
 install-user: (build-release)
     install -Dm0755 {{bin-src}} {{user-bin-dst}}
     install -Dm0644 resources/app.desktop {{user-desktop-dst}}
-    install -Dm0644 resources/app.metainfo.xml {{user-appdata-dst}}
+    install -Dm0644 resources/app.metainfo.xml {{user-metainfo-dst}}
     install -Dm0644 resources/icon.svg {{user-icon-dst}}
 
 # Symlinks build output into ~/.local for iterative development.
@@ -76,7 +76,7 @@ dev-install: (build-release)
     mkdir -p {{user-base}}/bin
     ln -sf {{absolute_path(bin-src)}} {{user-bin-dst}}
     install -Dm0644 resources/app.desktop {{user-desktop-dst}}
-    install -Dm0644 resources/app.metainfo.xml {{user-appdata-dst}}
+    install -Dm0644 resources/app.metainfo.xml {{user-metainfo-dst}}
     install -Dm0644 resources/icon.svg {{user-icon-dst}}
 
 # Rebuild and restart cosmic-panel to reload applets
@@ -89,7 +89,7 @@ uninstall:
 
 # Uninstalls user-local files
 uninstall-user:
-    rm -f {{user-bin-dst}} {{user-desktop-dst}} {{user-appdata-dst}} {{user-icon-dst}}
+    rm -f {{user-bin-dst}} {{user-desktop-dst}} {{user-metainfo-dst}} {{user-icon-dst}}
 
 # Vendor dependencies locally
 vendor:

@@ -3,15 +3,38 @@
   <id>com.github.bgub.CosmicExtAppletPomodoro</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MPL-2.0</project_license>
+  <project_group>COSMIC</project_group>
   <name>Pomodoro Timer</name>
   <summary>A pomodoro timer applet for the COSMIC desktop</summary>
+
+  <developer id="com.github.bgub">
+    <name>bgub</name>
+  </developer>
+
+  <url type="homepage">https://github.com/cosmic-utils/cosmic-ext-applet-pomodoro</url>
+  <url type="bugtracker">https://github.com/cosmic-utils/cosmic-ext-applet-pomodoro/issues</url>
+
+  <description>
+    <p>A pomodoro timer applet for the COSMIC desktop environment. Stay focused
+      using the Pomodoro Technique with customizable work and break intervals,
+      right from your panel.</p>
+  </description>
+
   <launchable type="desktop-id">com.github.bgub.CosmicExtAppletPomodoro.desktop</launchable>
+
+  <icon type="stock">com.github.bgub.CosmicExtAppletPomodoro</icon>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/cosmic-utils/cosmic-ext-applet-pomodoro/main/screenshot.png</image>
+      <caption>Pomodoro timer applet on the COSMIC panel</caption>
+    </screenshot>
+  </screenshots>
+
   <provides>
-    <id>com.github.bgub.CosmicExtAppletPomodoro</id>
-    <binaries>
-      <binary>cosmic-ext-applet-pomodoro</binary>
-    </binaries>
+    <binary>cosmic-ext-applet-pomodoro</binary>
   </provides>
+
   <requires>
     <display_length compare="ge">360</display_length>
   </requires>
@@ -20,13 +43,20 @@
     <control>pointing</control>
     <control>touch</control>
   </supports>
+
   <categories>
-    <category>COSMIC</category>
+    <category>Utility</category>
   </categories>
+
   <keywords>
     <keyword>COSMIC</keyword>
     <keyword>pomodoro</keyword>
     <keyword>timer</keyword>
   </keywords>
+
   <content_rating type="oars-1.1" />
+
+  <releases>
+    <release version="0.1.0" date="2026-02-28" />
+  </releases>
 </component>
