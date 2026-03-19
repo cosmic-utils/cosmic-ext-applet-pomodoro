@@ -1,0 +1,15 @@
+app-title = Časovač Pomodoro
+idle = Neaktivní
+work = Práce
+short-break = Krátká přestávka
+long-break = Dlouhá přestávka
+start = Spustit
+pause = Pauza
+resume = Pokračovat
+reset = Resetovat
+skip = Přeskočit
+pomodoros = { $completed } / { $goal }
+work-mins = Práce (min)
+short-break-mins = Krátká přestávka (min)
+long-break-mins = Dlouhá přestávka (min)
+long-break-interval = Pomodorů do dlouhé přestávky

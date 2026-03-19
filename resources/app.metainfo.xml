@@ -5,7 +5,9 @@
   <project_license>MPL-2.0</project_license>
   <project_group>COSMIC</project_group>
   <name>Pomodoro Timer</name>
+  <name xml:lang="cs">Časovač Pomodoro</name>
   <summary>A pomodoro timer applet for the COSMIC desktop</summary>
+  <summary xml:lang="cs">Applet časovače Pomodoro pro prostředí COSMIC</summary>
 
   <developer id="com.github.bgub">
     <name>bgub</name>
@@ -18,6 +20,9 @@
     <p>A pomodoro timer applet for the COSMIC desktop environment. Stay focused
       using the Pomodoro Technique with customizable work and break intervals,
       right from your panel.</p>
+    <p xml:lang="cs">Applet časovače Pomodoro pro prostředí COSMIC. Zůstaňte soustředění
+      pomocí techniky Pomodoro s přizpůsobitelnými intervaly práce a přestávek
+      přímo z vašeho panelu.</p>
   </description>
 
   <launchable type="desktop-id">com.github.bgub.CosmicExtAppletPomodoro.desktop</launchable>
@@ -28,6 +33,7 @@
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/cosmic-utils/cosmic-ext-applet-pomodoro/main/screenshot.png</image>
       <caption>Pomodoro timer applet on the COSMIC panel</caption>
+      <caption xml:lang="cs">Applet časovače Pomodoro na panelu COSMIC</caption>
     </screenshot>
   </screenshots>
 
@@ -52,6 +58,8 @@
     <keyword>COSMIC</keyword>
     <keyword>pomodoro</keyword>
     <keyword>timer</keyword>
+
+    <keyword xml:lang="cs">časovač</keyword>
   </keywords>
 
   <content_rating type="oars-1.1" />
