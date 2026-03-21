@@ -1,8 +1,10 @@
 [Desktop Entry]
 Name=Pomodoro Timer
 Name[cs]=Časovač Pomodoro
+Name[uk]=Таймер Помідор
 Comment=A pomodoro timer applet for the COSMIC desktop
 Comment[cs]=Applet časovače Pomodoro pro prostředí COSMIC
+Comment[uk]=Віджет таймера Помідор для середовища COSMIC
 Type=Application
 Icon=com.github.bgub.CosmicExtAppletPomodoro
 Exec=cosmic-ext-applet-pomodoro %F
@@ -11,6 +13,7 @@ StartupNotify=true
 Categories=COSMIC
 Keywords=COSMIC;pomodoro;timer
 Keywords[cs]=COSMIC;pomodoro;časovač
+Keywords[uk]=COSMIC;КОСМІК;КОСМОС;помідоро;pomodoro;таймер
 NoDisplay=true
 X-CosmicApplet=true
 X-CosmicHoverPopup=Auto

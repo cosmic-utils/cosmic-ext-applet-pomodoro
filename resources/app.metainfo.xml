@@ -6,8 +6,10 @@
   <project_group>COSMIC</project_group>
   <name>Pomodoro Timer</name>
   <name xml:lang="cs">Časovač Pomodoro</name>
+  <name xml:lang="uk">Таймер Помідор</name>
   <summary>A pomodoro timer applet for the COSMIC desktop</summary>
   <summary xml:lang="cs">Applet časovače Pomodoro pro prostředí COSMIC</summary>
+  <summary xml:lang="uk">Віджет таймера Помідор для COSMIC</summary>
 
   <developer id="com.github.bgub">
     <name>bgub</name>
@@ -24,6 +26,11 @@
       pomocí techniky Pomodoro s přizpůsobitelnými intervaly práce a přestávek
       přímo z vašeho panelu.</p>
   </description>
+  <description xml:lang="uk">
+    <p>Віджет таймер Помідор для COSMIC. Залишайтеся зосередженими завдяки 
+      методу Помідоро (Pomodoro) з можливістю налаштовувати інтервали роботи 
+      та перерв прямо з вашої панелі.</p>
+  </description>
 
   <launchable type="desktop-id">com.github.bgub.CosmicExtAppletPomodoro.desktop</launchable>
 
@@ -34,6 +41,7 @@
       <image>https://raw.githubusercontent.com/cosmic-utils/cosmic-ext-applet-pomodoro/main/screenshot.png</image>
       <caption>Pomodoro timer applet on the COSMIC panel</caption>
       <caption xml:lang="cs">Applet časovače Pomodoro na panelu COSMIC</caption>
+      <caption xml:lang="uk">Таймер Помідор на панелі COSMIC</caption>
     </screenshot>
   </screenshots>
 
@@ -60,6 +68,9 @@
     <keyword>timer</keyword>
 
     <keyword xml:lang="cs">časovač</keyword>
+    <keyword xml:lang="uk">КОСМІК</keyword>
+    <keyword xml:lang="uk">таймер</keyword>
+    <keyword xml:lang="uk">помідоро</keyword>
   </keywords>
 
   <content_rating type="oars-1.1" />

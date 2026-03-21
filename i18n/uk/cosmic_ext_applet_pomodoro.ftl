@@ -1,0 +1,15 @@
+app-title = Таймер Помідор
+idle = Очікування
+work = Робота
+short-break = Коротка перерва
+long-break = Довга перерва
+start = Почати
+pause = Пауза
+resume = Продовжити
+reset = Скинути
+skip = Пропустити
+pomodoros = { $completed } / { $goal }
+work-mins = Робота (хв)
+short-break-mins = Коротка перерва (хв)
+long-break-mins = Довга перерва (хв)
+long-break-interval = Помідорок до довгої перерви
