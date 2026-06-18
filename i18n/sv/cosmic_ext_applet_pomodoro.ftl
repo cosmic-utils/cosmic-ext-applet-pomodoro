@@ -1,0 +1,15 @@
+app-title = Pomodoro Timer
+idle = Overksam
+work = Jobb
+short-break = Kort paus
+long-break = Lång paus
+start = Starta
+pause = Pause
+resume = Fortsätta
+reset = Återställ
+skip = Hoppa över
+pomodoros = { $completed } / { $goal }
+work-mins = Jobba (min)
+short-break-mins = Kort paus (min)
+long-break-mins = Lång paus (min)
+long-break-interval = Pomodoros fram till lång paus
