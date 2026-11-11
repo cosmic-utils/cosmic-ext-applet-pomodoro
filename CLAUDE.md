@@ -45,6 +45,7 @@ src/
   app.rs        — core: AppModel state, Message enum, view/update/subscription
   config.rs     — Config struct with #[derive(CosmicConfigEntry)], persisted via cosmic-config
   i18n.rs       — fluent localization via i18n-embed, fl!("key") macro
+  notify.rs     — desktop notification (notify-rust) and sound (pw-play/paplay, Pop or freedesktop theme) when a phase ends
 resources/
   tomato.svg    — outline-only SVG using currentColor + stroke (no fill)
   pause.svg     — pause icon, same stroke style as tomato
@@ -89,6 +90,23 @@ Subscription::run_with(
         })
     },
 )
+```
+
+### One-shot Tasks
+
+Side effects that should not block `update()` (e.g. the phase-end notification and sound in `notify.rs`) are async functions returned as a `Task`. Use `.discard()` when no message comes back:
+
+```rust
+fn alert_phase_start(&self) -> Task<cosmic::Action<Message>> {
+    // ...build `summary` and `body` for the phase that just started
+    Task::future(notify::alert(Self::APP_ID, summary, body, notifications, sound)).discard()
+}
+
+// in update()
+Message::Tick => {
+    self.advance_phase();
+    return self.alert_phase_start();
+}
 ```
 
 ### Config Persistence
@@ -183,7 +201,7 @@ features = ["applet", "applet-token", "dbus-config", "multi-window", "tokio", "w
 Only pull the tokio features you need (avoid `"full"`):
 
 ```toml
-tokio = { version = "1", features = ["time"] }
+tokio = { version = "1", features = ["process", "time"] }
 ```
 
 ## Publishing

@@ -4,6 +4,8 @@ use std::time::Duration;
 
 use crate::config::Config;
 use crate::fl;
+use crate::notify;
+use cosmic::Application;
 use cosmic::Theme;
 use cosmic::cosmic_config::{self, CosmicConfigEntry};
 use cosmic::iced::futures::SinkExt;
@@ -62,6 +64,8 @@ pub enum Message {
     SetShortBreakMins(u32),
     SetLongBreakMins(u32),
     SetLongBreakInterval(u32),
+    SetNotifications(bool),
+    SetSound(bool),
 }
 
 impl AppModel {
@@ -102,7 +106,7 @@ impl AppModel {
         }
     }
 
-    fn update_config_value(&mut self, value: u32, update: impl FnOnce(&mut Config, u32)) {
+    fn update_config_value<T>(&mut self, value: T, update: impl FnOnce(&mut Config, T)) {
         update(&mut self.config, value);
         self.save_config();
     }
@@ -122,6 +126,33 @@ impl AppModel {
         };
 
         controls.spacing(8).into()
+    }
+
+    fn alert_phase_start(&self) -> Task<cosmic::Action<Message>> {
+        if !self.config.notifications && !self.config.sound {
+            return Task::none();
+        }
+        let mins = self.phase.total_secs(&self.config) / 60;
+        let (summary, body) = match self.phase {
+            Phase::ShortBreak => (
+                fl!("notify-work-done"),
+                fl!("notify-short-break", mins = mins),
+            ),
+            Phase::LongBreak => (
+                fl!("notify-work-done"),
+                fl!("notify-long-break", mins = mins),
+            ),
+            Phase::Work => (fl!("notify-break-done"), fl!("notify-work", mins = mins)),
+            Phase::Idle => return Task::none(),
+        };
+        Task::future(notify::alert(
+            Self::APP_ID,
+            summary,
+            body,
+            self.config.notifications,
+            self.config.sound,
+        ))
+        .discard()
     }
 
     fn advance_phase(&mut self) {
@@ -214,6 +245,16 @@ impl AppModel {
                 10,
                 Message::SetLongBreakInterval,
             ))
+            .push(toggle_row(
+                fl!("notifications"),
+                self.config.notifications,
+                Message::SetNotifications,
+            ))
+            .push(toggle_row(
+                fl!("sound"),
+                self.config.sound,
+                Message::SetSound,
+            ))
             .spacing(8)
             .into()
     }
@@ -255,6 +296,18 @@ fn setting_row<'a>(
         ))
         .align_y(Alignment::Center)
         .spacing(8)
+        .into()
+}
+
+fn toggle_row<'a>(
+    label: String,
+    value: bool,
+    on_toggle: fn(bool) -> Message,
+) -> Element<'a, Message> {
+    widget::toggler(value)
+        .label(label)
+        .width(Length::Fill)
+        .on_toggle(on_toggle)
         .into()
 }
 
@@ -476,6 +529,8 @@ impl cosmic::Application for AppModel {
                     self.remaining_secs -= 1;
                 } else {
                     self.advance_phase();
+                    // Only a finished timer alerts; skipping stays silent
+                    return self.alert_phase_start();
                 }
             }
             Message::Start => self.start_timer(),
@@ -501,6 +556,12 @@ impl cosmic::Application for AppModel {
             Message::SetLongBreakInterval(val) => self.update_config_value(val, |config, value| {
                 config.long_break_interval = value;
             }),
+            Message::SetNotifications(val) => self.update_config_value(val, |config, value| {
+                config.notifications = value;
+            }),
+            Message::SetSound(val) => self.update_config_value(val, |config, value| {
+                config.sound = value;
+            }),
             Message::UpdateConfig(config) => {
                 self.config = config;
             }
@@ -521,7 +582,7 @@ impl cosmic::Application for AppModel {
                         .max_width(372.0)
                         .min_width(300.0)
                         .min_height(100.0)
-                        .max_height(400.0);
+                        .max_height(500.0);
                     get_popup(popup_settings)
                 };
             }
