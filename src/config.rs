@@ -9,6 +9,8 @@ pub struct Config {
     pub short_break_mins: u32,
     pub long_break_mins: u32,
     pub long_break_interval: u32,
+    pub notifications: bool,
+    pub sound: bool,
 }
 
 impl Default for Config {
@@ -18,6 +20,8 @@ impl Default for Config {
             short_break_mins: 5,
             long_break_mins: 15,
             long_break_interval: 4,
+            notifications: true,
+            sound: true,
         }
     }
 }

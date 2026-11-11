@@ -27,6 +27,12 @@ NixOS users should use the [Flatpak package](https://github.com/pop-os/cosmic-fl
 
 A [cosmic-flatpak package](https://github.com/pop-os/cosmic-flatpak/pull/116) is in review.
 
+## Notifications
+
+When a work or break period ends, the applet shows a desktop notification and plays a sound. Both can be turned off in the applet's popup.
+
+The sound is `complete.oga` from the Pop sound theme, falling back to the freedesktop sound theme, played with `pw-play` (PipeWire) or `paplay` (PulseAudio). If neither a theme nor a player is installed, the applet stays silent.
+
 ## Translators
 
 [Fluent][fluent] is used for localization of the software. Fluent's translation files are found in the [i18n directory](./i18n). New translations may copy the [English (en) localization](./i18n/en) of the project, rename `en` to the desired [ISO 639-1 language code][iso-codes], and then translations can be provided for each [message identifier][fluent-guide]. If no translation is necessary, the message may be omitted.
